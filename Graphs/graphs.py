@@ -31,6 +31,16 @@ class Graph:
                     queue.append(i)
                     visited[i] = True
 
+    def DFSUtil(self, v, visited):
+        visited.add(v)
+        print(v, end=' ')
+        for neighbour in self.graph[v]:
+            if neighbour not in visited:
+                self.DFSUtil(neighbour, visited)
+
+    def DFS(self, v):
+        visited = set()
+        self.DFSUtil(v, visited)
 
 graph = Graph(5, 7)
 graph.add_edge(0, 1)
@@ -42,4 +52,4 @@ graph.add_edge(2, 3)
 graph.add_edge(3, 4)
 graph.print_graph()
 graph.BFS(3)
-# print(max(graph.graph))
+graph.DFS(3)
